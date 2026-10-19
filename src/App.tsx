@@ -1,22 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { EventsProvider } from "./context/EventsContext";
+import EventsPage from "./pages/EventsPage";
+import InvitationsPage from "./pages/InvitationsPage";
+import CollaboratorsPage from "./pages/CollaboratorsPage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Header />
-        <main className="main">
-          <Routes>
-            <Route path="/" element={<h2>Events</h2>} />
-            <Route path="/invitations" element={<h2>Invitations</h2>} />
-            <Route path="/collaborators" element={<h2>Collaborators</h2>} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <EventsProvider>
+      <BrowserRouter>
+        <div className="app">
+          <Header />
+          <main className="main">
+            <Routes>
+              <Route path="/" element={<EventsPage />} />
+              <Route path="/invitations" element={<InvitationsPage />} />
+              <Route path="/collaborators" element={<CollaboratorsPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </EventsProvider>
   );
 }
 
